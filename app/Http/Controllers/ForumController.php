@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Category;
+use App\Models\Forum;
 use Illuminate\Http\Request;
 
 class ForumController extends Controller
@@ -17,9 +18,11 @@ class ForumController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $category_id = $request->query('category_id');
+        $categories = Category::all();
+        return view('forums.create', compact('categories', 'category_id'));
     }
 
     /**
@@ -27,7 +30,16 @@ class ForumController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required|max:255',
+            'content' => 'required',
+            'category_id' => 'required|exists:categories,id',
+        ]);
+    
+        $forum = Forum::create($request->all());
+    
+        return redirect()->route('categories.show', $forum->category_id)
+            ->with('success', 'Forum created successfully.');
     }
 
     /**

@@ -18,5 +18,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::resource('categories',CategoryController::class);
-Route::resource('forums',ForumController::class);
+Route::get('/', [CategoryController::class, 'index'])->name('home');
+Route::resource('categories', CategoryController::class);
+Route::resource('forums', ForumController::class);
