@@ -34,7 +34,7 @@
                 @endforeach
             </select>
         </div>
-        <button type="submit" class="btn btn-primary">Create Forum</button>
+        <button type="submit" class="btn btn-secondary">Create Forum</button>
     </form>
 </div>
 @endsection
