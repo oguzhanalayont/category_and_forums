@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Forum;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -10,6 +11,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
+        $categories = Category::withCount('forums')->get();
         return view('categories.index', compact('categories'));
     }
 

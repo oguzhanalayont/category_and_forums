@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+    body {
+        background-color: #d1ecf1;
+    }
+</style>
     <h1>Forums</h1>
     <a href="{{ route('forums.create') }}">Create New Forum</a>
     

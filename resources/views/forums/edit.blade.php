@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+    body {
+        background-color: #d1ecf1;
+    }
+</style>
 <div class="container mt-4">
     <h1>Edit Forum</h1>
     

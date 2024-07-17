@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+    body {
+        background-color: #d1ecf1;
+    }
+</style>
     <h1>Create New Category</h1>
     
     @if ($errors->any())
@@ -19,6 +24,7 @@
             <label for="name">Name:</label>
             <input type="text" name="name" id="name" required>
         </div>
-        <button type="submit">Create Category</button>
+
+        <button type="submit" class="btn btn-secondary mb-2">Create Category</button>
     </form>
 @endsection

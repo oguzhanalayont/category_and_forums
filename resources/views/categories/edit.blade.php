@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+    body {
+        background-color: #d1ecf1;
+    }
+</style>
     <h1>Edit Category</h1>
     
     @if ($errors->any())

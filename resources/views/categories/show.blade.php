@@ -1,12 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mt-4">
+<style>
+    body {
+        background-color: #d1ecf1;
+    }
+</style>
+<div class="container mt-4" >
     <h1>Category: {{ $category->name }}</h1>
     
     <a href="{{ route('forums.create', ['category_id' => $category->id]) }}" class="btn btn-secondary mb-3">Create New Forum</a>
     
-    <h2>Forums in this category:</h2>
+    <h2>Forums</h2>
     @if($category->forums->count() > 0)
     <table class="table">
         <thead>
@@ -25,7 +30,7 @@
                         <form action="{{ route('forums.destroy', $forum->id) }}" method="POST" style="display:inline">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-secondary btn-sm" onclick="return confirm('Are you sure you want to delete this forum?')">Delete</button>
+                            <button type="submit" class="btn btn-secondary btn-sm" onclick="return confirm('Are You Sure You Want To Delete This Forum?')">Delete</button>
                         </form>
                     </td>
                 </tr>
