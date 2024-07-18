@@ -24,3 +24,6 @@
     <a href="{{ route('forums.posts.index', $forum) }}" class="btn btn-secondary">Back to Posts</a>
 </div>
 @endsection
+
+
+

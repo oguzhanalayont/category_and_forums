@@ -32,7 +32,11 @@
         </div>
         <button type="submit" class="btn btn-secondary">Update Post</button>
     </form>
-    
-    <a href="{{ route('forums.posts.show', [$forum, $post]) }}" class="btn btn-secondary mt-3">Back to Post</a>
+
+    @if($post->user)
+        <a href="{{ route('forums.posts.show', [$forum, $post]) }}" class="btn btn-secondary mt-3">Back to Post</a>
+    @else
+        <a href="{{ route('forums.posts.index', $forum) }}" class="btn btn-secondary mt-3">Back to Posts</a>
+    @endif
 </div>
 @endsection
