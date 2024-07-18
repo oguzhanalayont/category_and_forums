@@ -21,7 +21,7 @@ Route::get('/', function () {
 });
 Route::get('/', [CategoryController::class, 'index'])->name('home');
 Route::resource('categories', CategoryController::class);
+Route::get('/forums', [ForumController::class, 'index'])->name('forums.index');
 Route::resource('forums', ForumController::class);
-// Route::group(['middleware' => ['auth']], function () {
 Route::resource('forums.posts', PostController::class);
-// });
+
