@@ -21,6 +21,7 @@
                 <th>Name</th>
                 <th>Forums Count</th>
                 <th>Actions</th>
+                
             </tr>
         </thead>
         <tbody>

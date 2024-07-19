@@ -19,12 +19,6 @@ class PostController extends Controller
         return view('posts.create', compact('forum'));
     }
 
-    // __construct() metodunu kaldırıyoruz
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
-
     public function store(Request $request, Forum $forum)
     {
         $validatedData = $request->validate([
