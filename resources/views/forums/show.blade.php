@@ -40,7 +40,7 @@
     </table>
     <div>
         <a href="{{ route('forums.posts.create', $forum) }}" class="btn btn-secondary me-2 mb-2">Create New Post</a>
-        <a href="{{ route('categories.show', $forum->category_id) }}" class="btn btn-secondary me-2 mb-2">Back to Category</a>
+        <a href="{{ route('categories.show', $forum->category_id) }}" class="btn btn-secondary me-2 mb-2">Back to Forums</a>
         <a href="{{ route('forums.edit', $forum->id) }}" class="btn btn-secondary me-2 mb-2">Edit Forum</a>
         <form action="{{ route('forums.destroy', $forum->id) }}" method="POST" class="d-inline">
             @csrf

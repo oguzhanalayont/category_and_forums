@@ -32,7 +32,8 @@ class PostController extends Controller
         $post->forum_id = $forum->id;
         $post->save();
 
-        return redirect()->route('forums.posts.index', $forum)->with('success', 'Post created successfully.');
+        return redirect()->route('forums.show', $forum)
+        ->with('success', 'Post created successfully.');
     }
 
     public function show(Forum $forum, Post $post)
@@ -62,7 +63,7 @@ class PostController extends Controller
     {
         $post->delete();
 
-        return redirect()->route('forums.posts.index', $forum)
+        return redirect()->route('forums.show', $forum)
             ->with('success', 'Post deleted successfully');
     }
 }

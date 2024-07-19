@@ -33,6 +33,6 @@
         <button type="submit" class="btn btn-secondary">Create Post</button>
     </form>
     
-    <a href="{{ route('forums.posts.index', $forum) }}" class="btn btn-secondary mt-3">Back to Posts</a>
+    <a href="{{ route('forums.show', $forum) }}" class="btn btn-secondary mt-3">Back to Forum</a>
 </div>
 @endsection
