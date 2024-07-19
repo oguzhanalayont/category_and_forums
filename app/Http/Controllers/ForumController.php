@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Forum;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class ForumController extends Controller
@@ -12,7 +13,9 @@ class ForumController extends Controller
      */
     public function index()
     {
-
+        $forums = Forum::all();
+        $forums = Forum::withCount('posts')->get();
+        return view('forums.index', compact('forums'));
     }
 
     /**
@@ -47,7 +50,8 @@ class ForumController extends Controller
      */
     public function show(Forum $forum)
     {
-        return view('forums.show', compact('forum'));
+        $posts = $forum->posts()->get();
+        return view('forums.show', compact('forum', 'posts'));
     }
 
     /**

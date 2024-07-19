@@ -15,6 +15,10 @@ class Forum extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function forum()
+    {
+        return $this->belongsTo(Forum::class);
+    }
     public function posts()
     {
         return $this->hasMany(Post::class);
