@@ -7,7 +7,7 @@
     }
 </style>
 <div class="container mt-4">
-    <h1>{{ $forum->title }}</h1>
+    <h1>Forum: {{ $forum->title }}</h1>
     <p>Category: <a href="{{ route('categories.show', $forum->category_id) }}" >{{ $forum->category->name }} </a></p>
     <div class="card mb-4">
         <div class="card-body">
