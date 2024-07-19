@@ -9,7 +9,7 @@
 <div class="container mt-4">
     <h1>Posts in {{ $forum->title }}</h1>
     <a href="{{ route('forums.posts.create', $forum) }}" class="btn btn-secondary mb-3">Create New Post</a>
-    
+    <a href="{{ route('forums.show', $forum) }}" class="btn btn-secondary mb-3">Back to Forum Page</a>
     @foreach ($posts as $post)
     <div class="card mb-3">
         <div class="card-body">
