@@ -4,31 +4,27 @@
 <style>
     body {
         background-color: #d1ecf1;
+    }
 </style>
 <div class="container mt-4">
-    <h1 class="mb-4">Categories</h1>
+    <h1>Categories</h1>
     <a href="{{ route('categories.create') }}" class="btn btn-secondary mb-3">Create New Category</a>
-
-    @if ($message = Session::get('success'))
-        <div class="alert alert-success">
-            {{ $message }}
-        </div>
-    @endif
     
     <table class="table table-bordered">
-        <thead>
+        <thead class="thead-light">
             <tr>
                 <th>Name</th>
                 <th>Forums Count</th>
+                <th>Description</th>
                 <th>Actions</th>
-                
             </tr>
         </thead>
         <tbody>
             @foreach ($categories as $category)
             <tr>
                 <td>{{ $category->name }}</td>
-                <td>{{ $category->forums_count }}</td>
+                <td>{{ $category->forums->count() }}</td>
+                <td>{{ Str::limit($category->description ?? '', 100) }}</td>
                 <td>
                     <a href="{{ route('categories.show', $category->id) }}" class="btn btn-secondary btn-sm">View</a>
                     <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-secondary btn-sm">Edit</a>

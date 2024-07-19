@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Forum extends Model
 {
-    protected $fillable = ['title','content','category_id'];
+    protected $fillable = ['name','title','content','category_id'];
 
     public function category()
     {
