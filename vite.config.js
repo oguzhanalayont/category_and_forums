@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
+import path from 'path';
 
 export default defineConfig({
     plugins: [
@@ -13,5 +14,10 @@ export default defineConfig({
     ],
     build: {
         outDir: 'public/build',
+    },
+    resolve: {
+        alias: {
+            '@': path.resolve(__dirname, 'resources/js'),
+        },
     },
 });

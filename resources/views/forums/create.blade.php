@@ -32,8 +32,9 @@
         <div class="form-group">
             <label for="category_id">Category:</label>
             <select class="form-control" id="category_id" name="category_id" required>
+                <option value="" disabled selected>Choose Category</option>
                 @foreach($categories as $category)
-                    <option value="{{ $category->id }}" {{ $category_id == $category->id ? 'selected' : '' }}>
+                    <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>
                         {{ $category->name }}
                     </option>
                 @endforeach
@@ -42,4 +43,19 @@
         <button type="submit" class="btn btn-secondary">Create Forum</button>
     </form>
 </div>
+
+@section('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const categorySelect = document.getElementById('category_id');
+        
+        categorySelect.addEventListener('change', () => {
+            const defaultOption = categorySelect.querySelector('option[value=""]');
+            if (defaultOption) {
+                defaultOption.style.display = 'none';
+            }
+        });
+    });
+</script>
+@endsection
 @endsection

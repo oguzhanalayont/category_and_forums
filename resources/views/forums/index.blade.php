@@ -40,9 +40,9 @@
     <h1>Forums</h1>
     <a href="{{ route('forums.create') }}" class="btn btn-secondary mb-3">Create New Forum</a>
     
-    @if ($message = Session::get('success'))
-        <div class="alert alert-success mb-3">
-            {{ $message }}
+    @if (session('success'))
+        <div id="notification-message" data-type="success" style="display: none;">
+            {{ session('success') }}
         </div>
     @endif
     
@@ -74,4 +74,17 @@
         </tbody>
     </table>
 </div>
+
+@section('scripts')
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const notificationMessage = document.getElementById('notification-message');
+    const type = notificationMessage?.dataset.type;
+
+    if (notificationMessage && type) {
+        toastr[type](notificationMessage.innerText);
+    }
+});
+</script>
+@endsection
 @endsection
