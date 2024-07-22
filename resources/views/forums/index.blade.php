@@ -57,7 +57,7 @@
         <tbody>
             @foreach ($forums as $forum)
             <tr>
-                <td>{{ $forum->name }}</td>
+                <td>{{ $forum->title }}</td>
                 <td>{{ $forum->posts->count() }}</td>
                 <td>
                     <a href="{{ route('forums.show', $forum->id) }}" class="btn btn-info">View</a>
