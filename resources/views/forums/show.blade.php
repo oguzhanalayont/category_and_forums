@@ -19,6 +19,7 @@
             <tr>
                 <th>Post Title</th>
                 <th>Post Content</th>
+                <th>Forum</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -27,6 +28,7 @@
             <tr>
                 <td>{{ $post->title }}</td>
                 <td>{{ Str::limit($post->content, 100) }}</td>
+                <td>{{ $forum->title  }}</td>
                 <td>
                     <form action="{{ route('forums.posts.destroy', [$forum, $post]) }}" method="POST" style="display:inline">
                         @csrf
