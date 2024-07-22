@@ -10,13 +10,6 @@
     <h1>Categories</h1>
     <a href="{{ route('categories.create') }}" class="btn btn-secondary mb-3">Create New Category</a>
     
-    <!-- Başarı mesajlarını göstermek için Toastr ile ilgili div -->
-    @if (session('success'))
-        <div id="notification-message" data-type="success" style="display: none;">
-            {{ session('success') }}
-        </div>
-    @endif
-
     <table class="table table-bordered">
         <thead class="thead-light">
             <tr>
@@ -46,17 +39,14 @@
         </tbody>
     </table>
 </div>
+@endsection
 
 @section('scripts')
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-    const notificationMessage = document.getElementById('notification-message');
-    const type = notificationMessage?.dataset.type;
-
-    if (notificationMessage && type) {
-        toastr[type](notificationMessage.innerText);
-    }
+    @if (session('success'))
+        toastr.success("{{ session('success') }}");
+    @endif
 });
 </script>
-@endsection
 @endsection

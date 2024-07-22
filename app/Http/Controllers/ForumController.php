@@ -1,26 +1,19 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Category;
 use App\Models\Forum;
-use App\Models\Post;
 use Illuminate\Http\Request;
 
 class ForumController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        $forums = Forum::all();
         $forums = Forum::withCount('posts')->get();
         return view('forums.index', compact('forums'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create(Request $request)
     {
         $category_id = $request->query('category_id');
@@ -28,9 +21,6 @@ class ForumController extends Controller
         return view('forums.create', compact('categories', 'category_id'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $request->validate([
@@ -42,31 +32,21 @@ class ForumController extends Controller
         $forum = Forum::create($request->all());
     
         return redirect()->route('categories.show', $forum->category_id)
-            ->with('success', 'Forum created successfully.');
+                         ->with('success', 'Forum created successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Forum $forum)
     {
         $posts = $forum->posts()->get();
         return view('forums.show', compact('forum', 'posts'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Forum $forum)
     {
         $categories = Category::all();
-        return view('forums.edit',compact('forum','categories'));
-    
+        return view('forums.edit', compact('forum', 'categories'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Forum $forum)
     {
         $request->validate([
@@ -78,18 +58,15 @@ class ForumController extends Controller
         $forum->update($request->all());
     
         return redirect()->route('categories.show', $forum->category_id)
-            ->with('success', 'Forum updated successfully');
+                         ->with('success', 'Forum updated successfully.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Forum $forum)
     {
         $category_id = $forum->category_id;
         $forum->delete();
     
         return redirect()->route('categories.show', $category_id)
-            ->with('success', 'Forum deleted successfully');
+                         ->with('success', 'Forum deleted successfully.');
     }
 }

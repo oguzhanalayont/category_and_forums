@@ -5,14 +5,17 @@ use App\Http\Controllers\ForumController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Ana sayfa
 Route::get('/', [CategoryController::class, 'index'])->name('home');
+
+// Kategoriler için rotalar
 Route::resource('categories', CategoryController::class);
-Route::get('/forums', [ForumController::class, 'index'])->name('forums.index');
+
+// Forumlar için rotalar
 Route::resource('forums', ForumController::class);
+
+// Forumlar ile ilişkili Postlar için rotalar
 Route::resource('forums.posts', PostController::class);
+
+// Forum gösterim rotası (forum detayları)
 Route::get('/forums/{forum}', [ForumController::class, 'show'])->name('forums.show');
-
-

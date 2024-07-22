@@ -3,8 +3,10 @@ import * as bootstrap from 'bootstrap';
 window.bootstrap = bootstrap;
 // app.js
 
-import toastr from 'toastr';
 import 'toastr/build/toastr.min.css';
+import toastr from 'toastr';
+
+window.toastr = toastr;
 
 // Toastr yapılandırma (isteğe bağlı)
 toastr.options = {
@@ -27,10 +29,5 @@ toastr.options = {
 
 // Sayfa yüklendiğinde mesajları kontrol et
 document.addEventListener('DOMContentLoaded', () => {
-  const notificationMessage = document.getElementById('notification-message');
-  const type = notificationMessage?.dataset.type;
-
-  if (notificationMessage && type) {
-    toastr[type](notificationMessage.innerText);
-  }
+  console.log('Toastr:', toastr); // Toastr'ın yüklenip yüklenmediğini kontrol edin
 });

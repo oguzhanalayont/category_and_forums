@@ -10,7 +10,6 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $categories = Category::all();
         $categories = Category::withCount('forums')->get();
         return view('categories.index', compact('categories'));
     }
@@ -39,7 +38,8 @@ class CategoryController extends Controller
 
     public function show(Category $category)
     {
-        return view('categories.show', compact('category'));
+        $forums = $category->forums()->withCount('posts')->get();
+        return view('categories.show', compact('category', 'forums'));
     }
 
     public function edit(Category $category)

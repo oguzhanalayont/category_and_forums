@@ -5,51 +5,15 @@
     body {
         background-color: #d1ecf1;
     }
-    .container {
-        background-color: white;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-    th, td {
-        padding: 12px;
-        text-align: left;
-        border-bottom: 1px solid #ddd;
-    }
-    th {
-        background-color: #f2f2f2;
-    }
-    .btn {
-        padding: 5px 10px;
-        margin-right: 5px;
-        border: none;
-        border-radius: 3px;
-        cursor: pointer;
-    }
-    .btn-primary { background-color: #007bff; color: white; }
-    .btn-info { background-color: #17a2b8; color: white; }
-    .btn-success { background-color: #28a745; color: white; }
-    .btn-danger { background-color: #dc3545; color: white; }
 </style>
-
 <div class="container mt-4">
     <h1>Forums</h1>
     <a href="{{ route('forums.create') }}" class="btn btn-secondary mb-3">Create New Forum</a>
     
-    @if (session('success'))
-        <div id="notification-message" data-type="success" style="display: none;">
-            {{ session('success') }}
-        </div>
-    @endif
-    
-    <table>
-        <thead>
+    <table class="table table-bordered">
+        <thead class="thead-light">
             <tr>
-                <th>Name</th>
+                <th>Title</th>
                 <th>Posts Count</th>
                 <th>Actions</th>
             </tr>
@@ -58,15 +22,15 @@
             @foreach ($forums as $forum)
             <tr>
                 <td>{{ $forum->title }}</td>
-                <td>{{ $forum->posts->count() }}</td>
+                <td>{{ $forum->posts_count }}</td>
                 <td>
-                    <a href="{{ route('forums.show', $forum->id) }}" class="btn btn-info">View</a>
-                    <a href="{{ route('forums.posts.index', $forum->id) }}" class="btn btn-secondary">View Posts</a>
-                    <a href="{{ route('forums.edit', $forum->id) }}" class="btn btn-secondary">Edit</a>
+                    <a href="{{ route('forums.show', $forum->id) }}" class="btn btn-info btn-sm">View</a>
+                    <a href="{{ route('forums.posts.index', $forum->id) }}" class="btn btn-secondary btn-sm">View Posts</a>
+                    <a href="{{ route('forums.edit', $forum->id) }}" class="btn btn-secondary btn-sm">Edit</a>
                     <form action="{{ route('forums.destroy', $forum->id) }}" method="POST" style="display:inline">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-secondary" onclick="return confirm('Are you sure?')">Delete</button>
+                        <button type="submit" class="btn btn-secondary btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
                     </form>
                 </td>
             </tr>
@@ -74,17 +38,14 @@
         </tbody>
     </table>
 </div>
+@endsection
 
 @section('scripts')
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-    const notificationMessage = document.getElementById('notification-message');
-    const type = notificationMessage?.dataset.type;
-
-    if (notificationMessage && type) {
-        toastr[type](notificationMessage.innerText);
-    }
+    @if(session('success'))
+        toastr.success("{{ session('success') }}");
+    @endif
 });
 </script>
-@endsection
 @endsection
